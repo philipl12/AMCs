@@ -13,6 +13,7 @@ int main() {
     string input = "";
     int j = 0, array[91] = {0};
     while (input != "done") { //loops the input process
+        input = "";
         cout << "Input outcome of race or done: ";
         cin >> input;
         if (input == "done") { return 0; }
@@ -26,15 +27,22 @@ int main() {
                 }
             }
         }
-
-        //this section does the job of printing team results
-        int teamNum = 0;
+        //loop to tally the team counts
+        int teamNum = 0, runners = 0;
         for (int i = 65; i < 91; i++) {
             if (array[i] == 0) { continue; }
-            teamNum = array[i];
+            if (array[i] > 0) { teamNum++; }
+            if (array[i] > runners || (array[i] < runners && array[i] != 0)) {
+                cout << "Uneven team numbers.\n";
+                input =="done";
+                break;
+            }
+            runners = array[i];
         }
-
-        input = "";
+        //this section does the job of printing team results
+        cout << "There are " << teamNum << " teams.\n"
+             << "Each team has " << runners << " runners\n";
+        //input = "";
         j = 0;
         reset(array, 91);
     }
