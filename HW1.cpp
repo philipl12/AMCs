@@ -39,10 +39,11 @@ int main() {
     for (int i = 0; ; i++) {
         j = i * i;
         if (j > 9) {
-            if ((j % 10) == (j % 10 / 10)) {
-                cout << "The perfect square is " << i << endl;
-                break;
+            if (((j % 10) % 2 == 0) && ((j % 10 / 10) % 2 == 0)) {
+                continue;
             }
+            cout << "The perfect square is " << i << endl;
+            break;
         }
     }
 
