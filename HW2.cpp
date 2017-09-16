@@ -3,10 +3,27 @@
 #include <array>
 using namespace std;
 
-void reset(int a[], int n) {
+void reset(int a[], int b[], int n) {
     for (int i = 65; i < n ; i++) {
         a[i] = 0;
+        b[i] = 0;
     }
+}
+
+void scores(int p[], int w, int t, int r) {
+    for (int i = 65; i < 91; i++) {
+        if (p[i] == 0) { continue; }
+        if (p[i] != 0) {
+            cout << char(i) << "      " << p[i] / (double)r
+                 << endl;
+        }
+        if (p[i] < top) {
+            t = p[i];
+            w = i;
+        }
+    }
+    cout << "The winning team is team " << char(w)
+         << " with a score of " << (double)t / r << ".\n";
 }
 
 int main() {
@@ -46,23 +63,12 @@ int main() {
         cout << "There are " << teamNum << " teams.\n\n"
              << "Each team has " << runners << " runner(s)\n\n"
              << "Team   Score\n";
-        for (int i = 65; i < 91; i++) {
-            if (position[i] == 0) { continue; }
-            if (position[i] != 0) {
-                cout << char(i) << "      " << position[i] / (double)runners
-                     << endl;
-            }
-            if (position[i] < top) {
-                top = position[i];
-                winner = i;
-            }
-        }
-        cout << "The winning team is team " << char(winner)
-             << " with a score of " << (double)top / runners << ".\n";
+
+        scores(position[], winner, top, runners);
+
         end: input = "";
         j = 0, teamNum = 0, runners = 0, top = 1000000, winner = 0;
-        reset(array, 91);
-        reset(position, 91);
+        reset(array, position, 91);
         goto start;
     //}
 
