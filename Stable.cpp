@@ -4,15 +4,15 @@
 using namespace std;
 
 bool ok(int q[], int c) {
-    static int adj[8][4] = {
-        {-1},             //0
-        {0, -1},          //1
-        {1, -1},          //2
-        {0, 1, 2, -1},    //3
-        {1, 2, 3, -1},    //4
-        {0, 3, 4, -1},    //5
-        {3, 4, 5, -1},    //6
-        {2, 4, 6, -1}     //7
+    static int mp[3][3] = {
+        {0, 2, 1},
+        {0, 2, 1},
+        {1, 2, 0}
+    };
+    static int wp[3][3] = {
+        {2, 1, 0},
+        {0, 1, 2},
+        {2, 0, 1}
     };
 
   for (int i = 0; i < c; i++) {
@@ -36,16 +36,16 @@ void print (int q[]) {
 }
 
 void next(int q[], int c) {
-  if (c == 8) { print(q); }
+  if (c == 3) { print(q); }
   else {
-      for (q[c] = 0; q[c] < 8; q[c]++) {
+      for (q[c] = 0; q[c] < 3; q[c]++) {
           if (ok(q, c)) { next(q, c+1); }
       }
   }
 }
 
 int main() {
-    int q[8];
+    int q[3];
     next(q, 0);
     return 0;
 }
