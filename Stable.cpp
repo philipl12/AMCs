@@ -14,29 +14,36 @@ bool ok(int q[], int c) {
         {0, 1, 2},
         {2, 0, 1}
     };
+    int nm = c, nw = q[c];
 
   for (int i = 0; i < c; i++) {
       if (q[c] == q[i]) { return false; }
   }
 
-  for( int i = 0; adj[c][i] != -1; i++) {
-      if (abs(q[c] - q[adj[c][i]]) == 1) { return false; }
+  for( int i = 0; i < c; i++) {
+      int cm = i, cw = q[i];
+      if (mp[cm][nw] < mp[cm][cw] && wp[nw][nm] > wp[nw][cm]) {
+          return false;
+      }
+      if (mp[nm][cw] > mp[nm][nw] && wp[cw][nm] > wp[cw][cm]) {
+          return false;
+      }
   }
   return true;
 }
 
-void print (int q[]) {
+void print (int q[], int c) {
     static int counter = 1;
     cout << "Solution # " << counter << endl;
-    cout << " " << q[1] << q[2] << endl;
-    cout << q[0] << q[3] << q[4] << q[7] << endl;
-    cout << " " << q[5] << q[6] << endl;
-
+    for (int i = 0; i < c; i++) {
+      cout << q[i];
+    }
+    cout << endl;
     counter++;
 }
 
 void next(int q[], int c) {
-  if (c == 3) { print(q); }
+  if (c == 3) { print(q, c); }
   else {
       for (q[c] = 0; q[c] < 3; q[c]++) {
           if (ok(q, c)) { next(q, c+1); }
