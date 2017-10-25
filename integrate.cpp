@@ -4,11 +4,9 @@ using namespace std;
 typedef double (*FUNC)(double);
 
 double integrate(FUNC f, double a, double b) {
-    static double base = .0001;
-    double height = a, sum = 0;
-    while (height <= b) {//correct loop
-        f(height);//height not incrementing
-        sum += base*height;
+    double height = a, sum = 0, base = .0001;
+    while (height <= b) {
+        sum += (base*f(height));
         height += base;
     }
     return sum;
