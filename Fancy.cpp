@@ -11,7 +11,7 @@ bool ok(int q[], int c) {
     }
     return true;
 }
-
+/*
 void backtrack(int &c) {
     c--;
     if (c == -1) {
@@ -19,7 +19,7 @@ void backtrack(int &c) {
         exit(1);
     }
 }
-
+*/
 void print(int q[]) {
     int i, j, k, l;
 

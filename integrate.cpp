@@ -4,10 +4,10 @@ using namespace std;
 typedef double (*FUNC)(double);
 
 double integrate(FUNC f, double a, double b) {
-    double height = a, sum = 0, base = .0001;
-    while (height <= b) {
-        sum += (base*f(height));
-        height += base;
+    double sum = 0;
+
+    for (double i = a; i <= b; i += .0001) {
+        sum += (.0001 * f(i));
     }
     return sum;
 }

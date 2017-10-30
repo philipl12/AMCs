@@ -1,24 +1,13 @@
 #include <iostream>
 using namespace std;
 
-typedef double (*FUNC)(double);
-
-double line (double x) { return x; }
-
-double square (double x) { return x*x; }
-
-double cube (double x) { return x*x*x; }
-
-int integrate(FUNC f, int n) {
-    return f(n);
+bool leapYear(int n) {
+    return n % 4 == 0;
+    return false;
 }
 
 int main() {
-    int n = 0;
-    cout << "Enter a number: ";
-    cin >> n;
-    cout << integrate(line, n) << endl;
-    cout << integrate(square, n) << endl;
-    cout << integrate(cube, n) << endl;
+    if (leapYear(1990)) { cout << "Leap year!!\n"; }
+    else { cout << "Not a leap year\n"; }
     return 0;
 }
