@@ -32,6 +32,7 @@ int main() {
         cout << "Enter a number: ";
         cin >> n;
     }
+    int* q = new int[n];
     for (int i = 0; i < n; i++) {
         next(q, 0, i)
     }
