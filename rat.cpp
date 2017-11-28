@@ -33,7 +33,7 @@ public:
     int getN() { return n; }
     int getD() { return d; }
 
-    void setN(int i ) { n = i; }
+    void setN(int i) { n = i; }
     void setD(int i) { d = i; }
 
     // arithmetic ops
@@ -44,8 +44,26 @@ public:
         return t;
     }
 
-    // Write the other 3 operators (operator-, operator*, operator/)
+    Rat operator-(Rat r) {
+        Rat t;
+        t.n = (n * r.d) - (d * r.n);
+        t.d = d * r.d;
+        return t;
+    }
 
+    Rat operator*(Rat r) {
+        Rat t;
+        t.n = n * r.n;
+        t.d = d * r.d;
+        return t;
+    }
+
+    Rat operator/(Rat r) {
+        Rat t;
+        t.n = n * r.d;
+        t.d = d * r.n;
+        return t;
+    }
     // Write a function to reduce the Rat to lowest terms, and then you can call this function from other functions.
    // Also make sure that the denominator is positive.  Rats should be printed in reduced form.
 
