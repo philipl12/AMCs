@@ -9,9 +9,9 @@ private:
     int d;
 
 public:
-    //constructors
+    // constructors
 
-    //default
+    // default
     Rat() {
         n = 0;
         d = 1;
@@ -21,6 +21,7 @@ public:
     Rat(int i, int j) {
         n = i;
         d = j;
+        lowestTerm(n, d);
     }
 
     // conversion
@@ -64,14 +65,20 @@ public:
         t.d = d * r.n;
         return t;
     }
-    // Write a function to reduce the Rat to lowest terms, and then you can call this function from other functions.
-   // Also make sure that the denominator is positive.  Rats should be printed in reduced form.
 
-   // Calculate the GCD (Euclid's algorithm)
-   int gcd(int n, int d) {
-       if (n == 0) return d;
-       else return gcd((d % n), n);
-   }
+    // Write a function to reduce the Rat to lowest terms
+    void lowestTerm(int& n, int& d) {
+        if(d < 0) return
+        int commonNum = gcd(d, n);
+        n /= commonNum;
+        d /= commonNum;
+    }
+
+    // Calculate the GCD
+    int gcd(int n, int d) {
+        if (n == 0) return d;
+        else return gcd((d % n), n);
+    }
 
    // 2 overloaded i/o operators
    friend ostream& operator<<(ostream& os, Rat r);
@@ -79,14 +86,14 @@ public:
 
 };// end Rat class
 
-// operator<<() is NOT a member function but since it was declared a friend of Rat
-// it has access to its private parts
 ostream& operator<<(ostream& os, Rat r){
-   // Rewrite this function so that improper fractions are printed as mixed numbers.  For example:
-   // 3/2 should be printed as 1 1/2
-   // 1/2 should be printed as 1/2
-   // 2/1 should be printed as 2
-   // 0/1 should be printed as 0
+   if (r.d == 1) os << r.n << endl;
+   else if (r.n == 0) os << '0' << endl;
+   else if (r.n < r.d) {
+       int wholeNum = r.n / r.d, newNum = r.n % r.d;
+       os << wholeNum << ' ' << newNum << " / " << r.d << endl;
+   }
+   else os << r.n << " / " << r.d << endl;
    // Negative numbers should be printed the same way, but beginning with a minus sign
    return os;
 }
