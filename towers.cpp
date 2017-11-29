@@ -8,10 +8,10 @@ int main() {
     cout << "Please enter the number of rings to move: ";
     cin >> n;
     cout << endl;
-    // The initial value of "to" depends on whether n is odd or even
     int from = 0, to, candidate = 1, move = 0;
-    if (n % 2 == 0) { to = 2; }
-    else { to = 1; }
+    if (n % 2 == 0) { to = 2; } // if/else for initiating correct
+    else { to = 1; }            //  "to" tower
+
     // Initialize the towers
     for (int i = n + 1; i >= 1; --i) {
         t[0].push_back(i);
@@ -23,13 +23,12 @@ int main() {
         cout << "Move #" << ++move << ": Transfer ring " << candidate
              << " from tower " << char (from + 'A') << " to tower "
              << char (to + 'A') << "\n";
-        // Move the ring from the "from tower" to the "to tower"
-        // first copy it, then delete it form the "from tower"
-        candidate = t[from].back();
-        t[from].pop_back();
-        t[to].push_back(candidate);
-        // from = index of tower w/ smallest ring that hasn't just been moved
-        // (to + 1) % 3 or (to + 2) % 3
+
+        candidate = t[from].back(); // make canditate equal to last element in from
+        t[from].pop_back(); // delete last element in from
+        t[to].push_back(candidate); // add candidate to correct tower
+
+        // if/else is supposed to set the correct "from" tower
         if (t[(to + 1) % 3].back() < t[(to + 2) % 3].back()) {
             from = (to + 1) % 3;
         }
@@ -37,14 +36,8 @@ int main() {
             from = (to + 2) % 3;
         }
 
-        // candidate = ring on top of the t[from] tower
-
-
-        // to = the index of closest tower on which candidate can be placed
-        // (from + 1) % 3 or (from + 2) % 3
-        // compare candidate w/ the ring on closer tower; which tower is "closer"
-        // depends on whether n is odd or even
-        if (candidate < t[(from + 2) % 3].back()) {
+        // if/else is supposed to set the correct "to" tower
+        if (t[(from + 1) % 3].back() < t[from % 3].back()) {
             to = (from + 2) % 3;
         }
         else {
