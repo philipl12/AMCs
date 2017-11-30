@@ -21,7 +21,6 @@ public:
     Rat(int i, int j) {
         n = i;
         d = j;
-        lowestTerm(n, d);
     }
 
     // conversion
@@ -42,6 +41,7 @@ public:
         Rat t;
         t.n = (n * r.d) + (d * r.n);
         t.d = d * r.d;
+        lowestTerm(t);
         return t;
     }
 
@@ -49,6 +49,7 @@ public:
         Rat t;
         t.n = (n * r.d) - (d * r.n);
         t.d = d * r.d;
+        lowestTerm(t);
         return t;
     }
 
@@ -56,6 +57,7 @@ public:
         Rat t;
         t.n = n * r.n;
         t.d = d * r.d;
+        lowestTerm(t);
         return t;
     }
 
@@ -63,15 +65,16 @@ public:
         Rat t;
         t.n = n * r.d;
         t.d = d * r.n;
+        lowestTerm(t);
         return t;
     }
 
     // Write a function to reduce the Rat to lowest terms
-    void lowestTerm(int& n, int& d) {
-        if(d < 0) return
-        int commonNum = gcd(d, n);
-        n /= commonNum;
-        d /= commonNum;
+    void lowestTerm(Rat &t) {
+        if(t.d < 0) return;
+        int commonNum = gcd(t.d, t.n);
+        t.n /= commonNum;
+        t.d /= commonNum;
     }
 
     // Calculate the GCD
@@ -110,30 +113,30 @@ int main() {
 
     cout << "r1: " << r1 << endl;
     cout << "r2: " << r2 << endl;
-    cout << "r1 + r2: " << r1 + r2 < endl;
-    cout << "r1 - r2: " << r1 - r2 < endl;
-    cout << "r1 * r2: " << r1 * r2 < endl;
-    cout << "r1 / r2: " << r1 / r2 < endl << endl;
+    cout << "r1 + r2: " << r1 + r2 << endl;
+    cout << "r1 - r2: " << r1 - r2 << endl;
+    cout << "r1 * r2: " << r1 * r2 << endl;
+    cout << "r1 / r2: " << r1 / r2 << endl << endl;
 
     r1 = r2;
     r2 = r1 * r2;
 
     cout << "r1: " << r1 << endl;
     cout << "r2: " << r2 << endl;
-    cout << "r1 + r2: " << r1 + r2 < endl;
-    cout << "r1 - r2: " << r1 - r2 < endl;
-    cout << "r1 * r2: " << r1 * r2 < endl;
-    cout << "r1 / r2: " << r1 / r2 < endl << endl;
+    cout << "r1 + r2: " << r1 + r2 << endl;
+    cout << "r1 - r2: " << r1 - r2 << endl;
+    cout << "r1 * r2: " << r1 * r2 << endl;
+    cout << "r1 / r2: " << r1 / r2 << endl << endl;
 
     r1 = r2 + r1 * r2 / r1;
     r2 = r2 + r1 * r2 / r1;
 
     cout << "r1: " << r1 << endl;
     cout << "r2: " << r2 << endl;
-    cout << "r1 + r2: " << r1 + r2 < endl;
-    cout << "r1 - r2: " << r1 - r2 < endl;
-    cout << "r1 * r2: " << r1 * r2 < endl;
-    cout << "r1 / r2: " << r1 / r2 < endl;
+    cout << "r1 + r2: " << r1 + r2 << endl;
+    cout << "r1 - r2: " << r1 - r2 << endl;
+    cout << "r1 * r2: " << r1 * r2 << endl;
+    cout << "r1 / r2: " << r1 / r2 << endl;
 
     return 0;
 }
