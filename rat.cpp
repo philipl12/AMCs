@@ -71,7 +71,7 @@ public:
 
     // Write a function to reduce the Rat to lowest terms
     void lowestTerm(Rat &t) {
-        if(t.d < 0) return;
+        if(t.d <= 0) return;
         int commonNum = gcd(t.d, t.n);
         t.n /= commonNum;
         t.d /= commonNum;
@@ -79,7 +79,7 @@ public:
 
     // Calculate the GCD
     int gcd(int n, int d) {
-        if (n == 0) return d;
+        if (n == 0) return abs(d);
         else return gcd((d % n), n);
     }
 
@@ -90,19 +90,16 @@ public:
 };// end Rat class
 
 ostream& operator<<(ostream& os, Rat r){
-   if (r.d == 1) os << r.n << endl;
-   else if (r.n == 0) os << '0' << endl;
-   else if (r.n < r.d) {
-       int wholeNum = r.n / r.d, newNum = r.n % r.d;
-       os << wholeNum << ' ' << newNum << " / " << r.d << endl;
-   }
-   else os << r.n << " / " << r.d << endl;
-   // Negative numbers should be printed the same way, but beginning with a minus sign
-   return os;
+    if (r.n > r.d) {
+        int wholeNum = r.n / r.d, newNum = r.n % r.d;
+        if (newNum != 0) os << wholeNum << ' ' << newNum << "/" << r.d << endl;
+        else os << wholeNum << endl;
+    }
+    else if (r.d == 1) os << r.n << endl;
+    else os << r.n << "/" << r.d << endl;
+    return os;
 }
 
-// operator>>() is NOT a member function but since it was declared a friend of Rat
-// it has access to its private parts
 istream& operator>>(istream& is, Rat& r) {
     is >> r.n >> r.d;
     return is;
