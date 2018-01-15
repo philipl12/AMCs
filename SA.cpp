@@ -52,7 +52,7 @@ public:
     // overloaded []: SA x(10, 20); x[15] = 100
     int& operator[](int i) {
         if(i < low || i > high) {
-            cout << "Index " <, i << " is out of range" << endl;
+            cout << "Index " << i << " is out of range" << endl;
             exit(1);
         }
         return p[i - low];
@@ -79,7 +79,7 @@ public:
 ostream& operator<<(ostream& os, SA s) {
     int size = s.high - s.low + 1;
     for (int i = 0; i < size; i++) {
-        cout << s.p[i] << endl;
+        os << s.p[i] << endl;
     }
     return os;
 };
