@@ -95,7 +95,7 @@ ostream& operator<<(ostream& os, Rat r){
         if (newNum != 0) os << wholeNum << ' ' << newNum << "/" << r.d << endl;
         else os << wholeNum << endl;
     }
-    else if (r.d == 1) os << r.n << endl;
+    else if (r.d == 1 || r.n == r.d) os << r.n << endl;
     else os << r.n << "/" << r.d << endl;
     return os;
 }
